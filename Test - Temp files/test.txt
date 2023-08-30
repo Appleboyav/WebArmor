@@ -1,0 +1,15 @@
+0                                 https://owasp.org/#
+2                                  https://owasp.org/
+3                          https://members.owasp.org/
+4                             https://owasp.org/store
+6                        https://owasp.org/membership
+8   https://owasp.org/donate?reponame=owasp.github.io
+10                       https://owasp.org/supporters
+11                     https://owasp.org/slack/invite
+13                        https://owasp.org/projects/
+14                        https://owasp.org/chapters/
+15                          https://owasp.org/events/
+16                           https://owasp.org/about/
+17   https://owasp.org/www-policy/operational/privacy
+18                         https://owasp.org/sitemap/
+19                         https://owasp.org/contact/
