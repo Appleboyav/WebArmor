@@ -56,6 +56,5 @@ def main():
     all_links = get_all_links_from_url(url, domain)
     all_panda_links = extract_links(url, domain, all_links)
 
-
 if __name__ == '__main__':
     main()

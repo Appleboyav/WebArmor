@@ -16,5 +16,3 @@ link_text = link.text
 
 for link in soup.find_all('a'):
     print(link['href'])
-
-    
