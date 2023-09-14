@@ -11,6 +11,8 @@
 *.txt
 *.wpd
 *.wps
+*.html
+*.pyc
 
 ### VisualStudioCode ###
 .vscode/*
