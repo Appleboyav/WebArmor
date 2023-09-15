@@ -1,9 +1,9 @@
-import extract_links_with_validation_final
+import helper_link
 import pandas as pd
-import helper
+import helper_lables
 
 def main():
-    # links = extract_links_with_validation_final.get_internal_links()
+    # links = helper_link.get_internal_links()
 
     # # df = pd.DataFrame(links)
     # # print(df)
@@ -12,15 +12,15 @@ def main():
     # print(f"internal links are: {links}")
     # print("_"*25)
     
-    # input_labels = helper.get_input_tags(links)
+    # input_labels = helper_link.get_input_tags(links)
     # print(input_labels)
 
     # url = "https://www.hacksplaining.com/exercises/sql-injection#/fourth-login-attempt"
-    # input_labels = helper.get_one_page_input_labels(url)
+    # input_labels = helper_link.get_one_page_input_labels(url)
     # print("input_labels: ", input_labels)
 
     url = 'https://www.instagram.com/accounts/login/'
-    input_tags = helper.get_input_tags_from_url(url)
+    input_tags = helper_link.get_input_tags_from_url(url)
 
     if input_tags:
         print(len(input_tags))
