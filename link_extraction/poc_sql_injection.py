@@ -19,6 +19,8 @@ def main():
     # input_labels = helper_link.get_one_page_input_labels(url)
     # print("input_labels: ", input_labels)
 
+    # TODO: change to login with user-agent
+
     url = 'https://www.instagram.com/accounts/login/'
     input_tags = helper_link.get_input_tags_from_url(url)
 
