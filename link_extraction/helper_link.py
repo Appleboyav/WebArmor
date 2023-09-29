@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+
 def validate_url(url):
     try:
         response = requests.get(url)
@@ -11,7 +12,8 @@ def validate_url(url):
             requests.exceptions.HTTPError):
         return False
 
-def get_all_links_from_url(url: str, domain_name: str) -> set:
+
+def get_all_links_from_url(url: str) -> set:
     response = requests.get(url)
 
     if response.ok:
@@ -25,6 +27,7 @@ def get_all_links_from_url(url: str, domain_name: str) -> set:
     all_links = html_page.find_all('a', {'href': True})
 
     return all_links
+
 
 def extract_links(url: str, domain_name: str, all_links: set) -> dict:
     list_links = []
@@ -41,6 +44,7 @@ def extract_links(url: str, domain_name: str, all_links: set) -> dict:
 
     return list_links
 
+
 def input_url_and_fetch_domain() -> tuple:
     while True:
         url = input("Please enter a VALID URL to check: ")
@@ -52,9 +56,11 @@ def input_url_and_fetch_domain() -> tuple:
         else:
             print("Invalid URL. Please enter a valid URL.")
 
+
 def get_internal_links() -> sorted(set()):
     url, domain = input_url_and_fetch_domain()
-    all_links = get_all_links_from_url(url, domain)
+    all_links = get_all_links_from_url(url)
     all_list_links = extract_links(url, domain, all_links)
 
     return sorted(set(all_list_links))
+
