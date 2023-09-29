@@ -23,7 +23,9 @@ def get_input_tags(links: list) -> None:
     return input_labels
 
 def get_one_page_input_labels(url: str):
-    response = requests.get(url)
+    headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+
+    response = requests.get(url, headers=headers)
     
     # Check if the request was successful
     if response.status_code == 200:
@@ -43,12 +45,14 @@ def get_one_page_input_labels(url: str):
 def get_input_tags_from_url(url):
     try:
         # Send an HTTP GET request to the URL
-        response = requests.get(url)
+        headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+
+        response = requests.get(url, headers=headers)
 
         # Check if the request was successful
         if response.status_code == 200:
             # Parse the HTML content of the page using BeautifulSoup
-            soup = BeautifulSoup(response.text, 'html.parser')
+            soup = BeautifulSoup(response.content, 'html.parser')
             # print(soup.prettify)
             # Find all the input tags using BeautifulSoup's find_all method
             input_tags = soup.find_all('input', {'type': ['text', 'password', 'email', 'number', 'tel', 'url', 'search', 'id']})
@@ -63,4 +67,18 @@ def get_input_tags_from_url(url):
     except requests.exceptions.RequestException as e:
         print(f"An error occurred while making the request: {e}")
         return None
+    
+def function(url):
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+    
+    res = requests.get(url)
+
+    if res.ok:
+        html_page = BeautifulSoup(res.content, 'html.parser')
+        html_inputs = html_page.find_all('input', {'type': ['text','password', 'textarea']})
+        print(html_page.prettify)
+
+        return list(set(html_inputs))
+    else:
+        return "not found"
     
