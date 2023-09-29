@@ -28,7 +28,7 @@ def get_one_page_input_labels(url: str):
     response = requests.get(url, headers=headers)
     
     # Check if the request was successful
-    if response.status_code == 200:
+    if response.status_code == CODE_OK:
         # Parse the HTML content of the page using BeautifulSoup
         soup = BeautifulSoup(response.text, 'html.parser')
         print(soup.prettify)
@@ -50,7 +50,7 @@ def get_input_tags_from_url(url):
         response = requests.get(url, headers=headers)
 
         # Check if the request was successful
-        if response.status_code == 200:
+        if response.status_code == CODE_OK:
             # Parse the HTML content of the page using BeautifulSoup
             soup = BeautifulSoup(response.content, 'html.parser')
             # print(soup.prettify)
