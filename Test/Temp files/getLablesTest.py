@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
+# ! still not working, check with noga
+
 def get_full_html(url):
     # Set up the Chrome driver with a custom user-agent
     options = Options()
