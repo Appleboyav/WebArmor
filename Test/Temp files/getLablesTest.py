@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 def get_full_html(url):
     # Set up the Chrome driver with a custom user-agent
     options = Options()
-    options.add_argument("User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")  # Replace with your desired user agent
+    options.add_argument("User-Agent=")  # Replace with your desired user agent
     driver = webdriver.Chrome(options=options)
 
     try:

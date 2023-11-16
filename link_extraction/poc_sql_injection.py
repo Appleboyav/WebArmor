@@ -30,15 +30,17 @@ def main():
 
     # ? ---------------------------------------------------------------
 
-    url = 'http://alf.nu/alert1?world=alert&level=alert0'
-    input_tags = helper_lables.function(url)
+    # url = 'http://alf.nu/alert1?world=alert&level=alert0'
+    # input_tags = helper_lables.function(url)
     
-    if input_tags:
-        print(len(input_tags))
-        print(input_tags)
-    else:
-        print(input_tags)
+    # if input_tags:
+    #     print(len(input_tags))
+    #     print(input_tags)
+    # else:
+    #     print(input_tags)
 
+    links = helper_link.GetLink.get_internal_links()
+    print(links)
     
 
 if __name__ == '__main__':

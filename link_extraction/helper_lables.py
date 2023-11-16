@@ -23,7 +23,7 @@ def get_input_tags(links: list) -> None:
     return input_labels
 
 def get_one_page_input_labels(url: str):
-    headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+    headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
 
     response = requests.get(url, headers=headers)
     
@@ -45,7 +45,7 @@ def get_one_page_input_labels(url: str):
 def get_input_tags_from_url(url):
     try:
         # Send an HTTP GET request to the URL
-        headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+        headers = {'User-Agent:':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
 
         response = requests.get(url, headers=headers)
 
@@ -69,7 +69,7 @@ def get_input_tags_from_url(url):
         return None
     
 def function(url):
-    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'}
     
     res = requests.get(url)
 
@@ -82,3 +82,6 @@ def function(url):
     else:
         return "not found"
     
+
+def retrive_input_tags_from_url(url: str):
+    pass   
