@@ -17,19 +17,14 @@ class GetLabels:
         if not GetLabels.is_valid_url(url):
             raise ValueError("Invalid URL")
 
-        # Set up the Chrome driver
         driver_options = Options()
         driver_options.add_argument("headless")
         driver = webdriver.Chrome(options=driver_options)
 
         try:
-            # Open the URL in the browser
             driver.get(url)
-
-            # Wait for the page to fully load
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
 
-            # Get the HTML content after JavaScript execution
             full_html = driver.page_source
 
         except Exception as e:
@@ -37,16 +32,13 @@ class GetLabels:
             full_html = ""
 
         finally:
-            # Close the browser to free up resources
             driver.quit()
 
         return full_html
     
     @staticmethod
     def extract_labels(full_html: str, label_type="input") -> list(set()):
-        # Parse the HTML content with BeautifulSoup
         soup = BeautifulSoup(full_html, 'html.parser')
-        # Extract the input tags
         html_labels = soup.find_all(label_type)
 
         return list(set(html_labels))
