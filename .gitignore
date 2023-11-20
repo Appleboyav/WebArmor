@@ -11,8 +11,8 @@
 *.txt
 *.wpd
 *.wps
-*.html
 *.pyc
+# *.html
 
 ### VisualStudioCode ###
 .vscode/*
@@ -34,3 +34,4 @@
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/text,visualstudiocode
+Under_Develop/ignored_folder
