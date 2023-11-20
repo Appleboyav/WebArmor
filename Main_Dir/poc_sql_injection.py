@@ -1,8 +1,10 @@
-import helper_link
+import helper_inte_links
 import pandas as pd
-import helper_lables
+import helper_labels
 
 def main():
+    # region comented code
+    
     # links = helper_link.get_internal_links()
 
     # # df = pd.DataFrame(links)
@@ -18,7 +20,10 @@ def main():
     # url = "https://www.hacksplaining.com/exercises/sql-injection#/fourth-login-attempt"
     # input_labels = helper_link.get_one_page_input_labels(url)
     # print("input_labels: ", input_labels)
-    
+
+    # endregion
+
+    # region else
     """
     TODO: create a list of functions that attack a certain url with sql injection attack.
     i wrote to Liza the level on how i think (avior) to create the attack. so if needed i'll send you this on whatsapp. 
@@ -39,8 +44,14 @@ def main():
     # else:
     #     print(input_tags)
 
-    links = helper_link.GetLink.get_internal_links()
+    #endregion
+
+    #region Main
+    
+    links = helper_inte_links.GetLink.get_internal_links()
     print(links)
+
+    #endregion
     
 
 if __name__ == '__main__':
