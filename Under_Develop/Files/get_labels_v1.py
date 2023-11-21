@@ -1,16 +1,13 @@
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
-
-# ! still not working, check with noga
 
 def get_full_html(url):
     # Set up the Chrome driver with a custom user-agent
     options = Options()
-    options.add_argument("User-Agent=")  # Replace with your desired user agent
     driver = webdriver.Chrome(options=options)
 
     try:
@@ -32,14 +29,16 @@ def get_full_html(url):
 def extract_inputs(full_html):
     # Parse the HTML content with BeautifulSoup
     soup = BeautifulSoup(full_html, 'html.parser')
-    print(soup.prettify)
+    # print(soup.prettify)
     # Extract the input tags
-    html_inputs = soup.find_all('input', {'type': ['text', 'password', 'textarea']})
+    # html_inputs = soup.find_all('input', {'type': ['text', 'password', 'textarea']})
+    html_inputs = soup.find_all('input')
 
     return list(set(html_inputs))
 
 def main():
-    url = "https://alf.nu/alert1?world=alert&level=alert0"  # Replace with the URL of the website you want to scrape
+    # url = "https://alf.nu/alert1?world=alert&level=alert0"  # Replace with the URL of the website you want to scrape
+    url = "https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content"  
     full_html = get_full_html(url)
     html_inputs = extract_inputs(full_html)
 
