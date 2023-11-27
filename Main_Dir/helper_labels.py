@@ -1,10 +1,10 @@
-from bs4 import BeautifulSoup
+import helper_generic_tags
+import validators
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import validators
 
 class GetLabels:
     @staticmethod
@@ -18,7 +18,7 @@ class GetLabels:
             raise ValueError("Invalid URL")
 
         driver_options = Options()
-        driver_options.add_argument("headless")
+        driver_options.add_argument("headless") #headless = work in the background 
         driver = webdriver.Chrome(options=driver_options)
 
         try:
@@ -38,15 +38,13 @@ class GetLabels:
     
     @staticmethod
     def extract_labels(full_html: str, label_type="input") -> list(set()):
-        soup = BeautifulSoup(full_html, 'html.parser')
-        html_labels = soup.find_all(label_type)
+        html_labels = helper_generic_tags.GenericGetTags.get_tags(full_html, label_type, None)
 
         return list(set(html_labels))
 
     '''
     # ! Ask noga what to do with the fact that we are going to make the project as a website, because if we do, we need to make sure we send
     the user a response incase the url he entered is invalid.
-    
     what/how should  we make it work with the website???
     '''
     @staticmethod
@@ -71,4 +69,3 @@ class GetLabels:
 
             except Exception as e:
                 print(f"An error occurred: {e}")
-
