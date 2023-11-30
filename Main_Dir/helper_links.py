@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 class GetLink:
     @staticmethod
-    def validate_url(url: str) -> bool:
+    def __validate_url(url: str) -> bool:
         try:
             response = requests.get(url)
             response.raise_for_status()  # This raises an exception for HTTP errors (4xx, 5xx)
@@ -15,7 +15,7 @@ class GetLink:
             return False
 
     @staticmethod
-    def get_all_links_from_url(url: str) -> set: # Basically a set
+    def __get_all_links_from_url(url: str) -> set: # Basically a set
         response = requests.get(url)
 
         if response.ok:
@@ -44,12 +44,12 @@ class GetLink:
         return list_links
 
     @staticmethod
-    def input_url_and_fetch_domain() -> tuple:
+    def __input_url_and_fetch_domain() -> tuple:
         while True:
             url = input("Please enter a VALID URL to check: ")
             parsed_url = urlparse(url)
             
-            if parsed_url.netloc and GetLink.validate_url(url):
+            if parsed_url.netloc and GetLink.__validate_url(url):
                 domain = parsed_url.netloc
                 return (url, domain)
             else:
@@ -57,8 +57,8 @@ class GetLink:
 
     @staticmethod
     def get_internal_links() -> sorted(set()):
-        url, domain = GetLink.input_url_and_fetch_domain()
-        all_links = GetLink.get_all_links_from_url(url)
-        all_list_links = GetLink.extract_links(url, domain, all_links)
+        url, domain = GetLink.__input_url_and_fetch_domain()
+        all_links = GetLink.__get_all_links_from_url(url)
+        all_list_links = GetLink.__extract_links(url, domain, all_links)
 
         return sorted(set(all_list_links))
