@@ -28,7 +28,7 @@ class GetLink:
         return all_links
 
     @staticmethod
-    def extract_links(url: str, domain_name: str, all_links: set) -> list:
+    def __extract_links(url: str, domain_name: str, all_links: set) -> list:
         list_links = []
 
         for link in all_links:
