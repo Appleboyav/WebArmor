@@ -8,13 +8,13 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class GetLabels:
     @staticmethod
-    def is_valid_url(url: str) -> bool:
+    def __is_valid_url(url: str) -> bool:
         return validators.url(url)
     
     @staticmethod
-    def get_full_html(url: str) -> str:
+    def __get_full_html(url: str) -> str:
         # Validate the URL
-        if not GetLabels.is_valid_url(url):
+        if not GetLabels.__is_valid_url(url):
             raise ValueError("Invalid URL")
 
         driver_options = Options()
@@ -37,7 +37,7 @@ class GetLabels:
         return full_html
     
     @staticmethod
-    def extract_labels(full_html: str, label_type="input") -> list(set()):
+    def __extract_labels(full_html: str, label_type="input") -> list(set()):
         html_labels = helper_generic_tags.GenericGetTags.get_tags(full_html, label_type, None)
 
         return list(set(html_labels))
@@ -54,16 +54,16 @@ class GetLabels:
 
             try:
                 # Check if the URL is valid
-                if not GetLabels.is_valid_url(input_url):
+                if not GetLabels.__is_valid_url(input_url):
                     print("Invalid URL. Please enter a valid URL.")
                     continue
 
-                full_html = GetLabels.get_full_html(input_url)
+                full_html = GetLabels.__get_full_html(input_url)
                 if not full_html:
                     print("Failed to retrieve HTML. Please try again.")
                     continue
 
-                html_labels = GetLabels.extract_labels(full_html)
+                html_labels = GetLabels.__extract_labels(full_html)
                 return html_labels
                 break  # Break out of the loop if everything is successful
 
