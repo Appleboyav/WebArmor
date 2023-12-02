@@ -1,4 +1,4 @@
-import helper_inte_links
+import helper_links
 import pandas as pd
 import helper_labels
 
@@ -48,7 +48,7 @@ def main():
 
     #region Main
     
-    links = helper_inte_links.GetLink.get_internal_links()
+    links = helper_links.GetLink.get_internal_links()
     print(links)
 
     #endregion
