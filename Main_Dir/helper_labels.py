@@ -1,24 +1,24 @@
-from bs4 import BeautifulSoup
+import helper_generic_tags
+import validators
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import validators
 
 class GetLabels:
     @staticmethod
-    def is_valid_url(url: str) -> bool:
+    def __is_valid_url(url: str) -> bool:
         return validators.url(url)
     
     @staticmethod
-    def get_full_html(url: str) -> str:
+    def __get_full_html(url: str) -> str:
         # Validate the URL
-        if not GetLabels.is_valid_url(url):
+        if not GetLabels.__is_valid_url(url):
             raise ValueError("Invalid URL")
 
         driver_options = Options()
-        driver_options.add_argument("headless")
+        driver_options.add_argument("headless") #headless = work in the background 
         driver = webdriver.Chrome(options=driver_options)
 
         try:
@@ -37,16 +37,14 @@ class GetLabels:
         return full_html
     
     @staticmethod
-    def extract_labels(full_html: str, label_type="input") -> list(set()):
-        soup = BeautifulSoup(full_html, 'html.parser')
-        html_labels = soup.find_all(label_type)
+    def __extract_labels(full_html: str, label_type="input") -> list(set()):
+        html_labels = helper_generic_tags.GenericGetTags.get_tags(full_html, label_type, None)
 
         return list(set(html_labels))
 
     '''
     # ! Ask noga what to do with the fact that we are going to make the project as a website, because if we do, we need to make sure we send
     the user a response incase the url he entered is invalid.
-    
     what/how should  we make it work with the website???
     '''
     @staticmethod
@@ -56,19 +54,18 @@ class GetLabels:
 
             try:
                 # Check if the URL is valid
-                if not GetLabels.is_valid_url(input_url):
+                if not GetLabels.__is_valid_url(input_url):
                     print("Invalid URL. Please enter a valid URL.")
                     continue
 
-                full_html = GetLabels.get_full_html(input_url)
+                full_html = GetLabels.__get_full_html(input_url)
                 if not full_html:
                     print("Failed to retrieve HTML. Please try again.")
                     continue
 
-                html_labels = GetLabels.extract_labels(full_html)
+                html_labels = GetLabels.__extract_labels(full_html)
                 return html_labels
                 break  # Break out of the loop if everything is successful
 
             except Exception as e:
                 print(f"An error occurred: {e}")
-
