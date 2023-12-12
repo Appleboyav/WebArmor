@@ -1,61 +1,41 @@
 import requests
+from bs4 import BeautifulSoup
 
 # ! not working
 
+# Set the URL of the login page
+login_url = "http://127.0.0.1:80/DVWA/login.php"  # Replace with the actual URL
 
-# Target URL
-url = "http://127.0.0.1:80/DVWA/login.php"
-
-# Login credentials
+# Set the login credentials
 payload = {
     "username": "admin",
     "password": "password",
-    "Login": "Login",
+    "Login": "Login",  # This value may need to match the actual name of the submit button
+    "user_token": "982b2f073c40f2b48c707fea0a00d5a6"
 }
 
-# Custom headers
-headers = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "en-US,en",
-    "Cache-Control": "max-age=0",
-    "Connection": "keep-alive",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Cookie": "PHPSESSID=1o4bq0as8krq2ckdatmaesbhhq; security=low",
-    "Host": "localhost",
-    "Origin": "http://localhost",
-    "Referer": "http://localhost/DVWA/login.php",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-User": "?1",
-    "Sec-GPC": "1",
-    "Upgrade-Insecure-Requests": "1",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="120", "Brave";v="120"',
-    "sec-ch-ua-mobile": "?0",
-}
-
-# Create a session to persist the login session
+# Create a session
 session = requests.Session()
 
-# Make a POST request to the login page with the credentials and custom headers
-response = session.post(url, data=payload, headers=headers)
+# Send a POST request to the login page to authenticate
+response = session.post(login_url, data=payload)
 
-# Check if login was successful
-if "Login failed" in response.text:
-    print("Login failed. Please check your credentials.")
-else:
+# Check if the login was successful
+if "CSRF token is incorrect" not in response.text:
     print("Login successful!")
+else:
+    print("Login failed.")
 
-# Now, you can continue to make requests using the open session
-# For example, you can make a GET request to the SQLi vulnerability page
-sqli_url = "http://127.0.0.1:80/DVWA/vulnerabilities/sqli/"
-response = session.get(sqli_url)
+# Now you can use the 'session' object to make subsequent requests while keeping the session alive
+# For example, you can make requests to other pages within the authenticated session
 
-# Do whatever you want with the open connection
-print(response.text)
+# Example: Get the content of another page after login
+other_page_url = "http://127.0.0.1:80/DVWA/index.php"  # Replace with the actual URL
+other_page_response = session.get(other_page_url)
 
-# Don't forget to close the session when you're done
+# Parse the HTML content of the response if needed
+soup = BeautifulSoup(other_page_response.text, "html.parser")
+# Perform actions on the parsed HTML content as needed
+print(soup.prettify)
+# Close the session when done
 session.close()
-
