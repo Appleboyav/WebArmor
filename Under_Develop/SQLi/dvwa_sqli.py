@@ -89,7 +89,6 @@ def main():
     
         print(SEPERATOR)
 
-
         pre_tags = get_pre_tags(sqli_res.text)
         # print(pre_tags)
         print("pre_tags".upper())
