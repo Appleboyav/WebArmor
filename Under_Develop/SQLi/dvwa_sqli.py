@@ -17,8 +17,8 @@ def get_user_token() -> str:
     with requests.Session() as c:
         res = c.get(f"{BASE_URL}/login.php")
         soup = bs(res.text, "html.parser")
-        cookie = soup.find_all("input", {"type": "hidden"})
-        user_token = cookie[0]["value"]
+        cookies = soup.find_all("input", {"type": "hidden"})
+        user_token = cookies[0]["value"]
 
         return user_token
 
