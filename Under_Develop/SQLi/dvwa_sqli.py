@@ -1,17 +1,9 @@
-# import sys, os
 import requests
 from bs4 import BeautifulSoup as bs
 import helper_url_encode as UrlEncodeHelper
 
 SEPERATOR = ("_"*80)
-
 BASE_URL = "http://127.0.0.1:80/DVWA"
-
-payload = {
-    'username': 'admin',
-    'password': 'password',
-    'Login':'Login'
-}
 
 def get_user_token() -> str:
     with requests.Session() as c:
@@ -21,22 +13,6 @@ def get_user_token() -> str:
         user_token = cookies[0]["value"]
 
         return user_token
-
-def get_sqli_response(form, sqli_payload, cookies_json) -> str:
-    with requests.Session() as session:
-    
-        if form["method"] == "GET":
-            print("Form Method is GET!") #TODO: debug - remove later
-
-            encoded_url_payload = UrlEncodeHelper.run_encode(sqli_payload)
-            res = session.get(f"{BASE_URL}/vulnerabilities/sqli/?id={encoded_url_payload}&Submit=Submit#", cookies=cookies_json)
-        elif form["method"] == "POST":
-            print("Form Method is POST!") #TODO: debug - remove later
-            
-            # ! do something else with the post type of request method. for now i dont see any post methods on the DVWA wesite for SQLi attacks!
-            # res = session.post(f"{BASE_URL}/vulnerabilities/sqli", sqli_payload, cookies=cookies_json)
-
-    return res
 
 def get_forms(html_page) -> list:
     soup = bs(html_page, "html.parser")
@@ -54,6 +30,21 @@ def does_sqli_succeed(pre_tags):
     if len(pre_tags) > 1:
         return True
     return False
+
+def get_sqli_response(form, sqli_payload, cookies_json) -> str:
+    with requests.Session() as session:
+    
+        if form["method"] == "GET":
+            print("Form Method is GET!") #TODO: debug - remove later
+
+            encoded_url_payload = UrlEncodeHelper.run_encode(sqli_payload)
+            res = session.get(f"{BASE_URL}/vulnerabilities/sqli/?id={encoded_url_payload}&Submit=Submit#", cookies=cookies_json)
+        elif form["method"] == "POST":
+            print("Form Method is POST!") #TODO: debug - remove later
+            # ! do something else with the post type of request method. for now i dont see any post methods on the DVWA wesite for SQLi attacks!
+            # res = session.post(f"{BASE_URL}/vulnerabilities/sqli", sqli_payload, cookies=cookies_json)
+
+    return res
 
 
 def main():
@@ -96,7 +87,6 @@ def main():
         print(len(pre_tags))
 
         print(SEPERATOR)
-
 
         if does_sqli_succeed(pre_tags):
             print("Your website is vulnerable to SQL Injection attack!")
