@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import helper_url_encode as UrlEncodeHelper
+# need to make a relative import of "helper_generic_tags.py" makes the code much easier
 
 SEPERATOR = ("_"*80)
 BASE_URL = "http://127.0.0.1:80/DVWA"
@@ -10,6 +11,7 @@ def get_user_token() -> str:
         res = c.get(f"{BASE_URL}/login.php")
         soup = bs(res.text, "html.parser")
         cookies = soup.find_all("input", {"type": "hidden"})
+        # cookies = helper.GenericGetTags.get_tags(html_page, "input", {"type": "hidden"})
         user_token = cookies[0]["value"]
 
         return user_token
@@ -17,12 +19,14 @@ def get_user_token() -> str:
 def get_forms(html_page) -> list:
     soup = bs(html_page, "html.parser")
     forms = soup.find_all("form")
-
+    # forms = helper.GenericGetTags.get_tags(html_page, "form", None)
+    
     return list(forms)
 
 def get_pre_tags(html_page) -> list:
     soup = bs(html_page, "html.parser")
     pre_tags = soup.find_all("pre")
+    # pre_tags = helper.GenericGetTags.get_tags(html_page, "pre", None)
 
     return list(pre_tags)
 
@@ -39,6 +43,7 @@ def get_sqli_response(form, sqli_payload, cookies_json) -> str:
 
             encoded_url_payload = UrlEncodeHelper.run_encode(sqli_payload)
             res = session.get(f"{BASE_URL}/vulnerabilities/sqli/?id={encoded_url_payload}&Submit=Submit#", cookies=cookies_json)
+            
         elif form["method"] == "POST":
             print("Form Method is POST!") #TODO: debug - remove later
             # ! do something else with the post type of request method. for now i dont see any post methods on the DVWA wesite for SQLi attacks!
