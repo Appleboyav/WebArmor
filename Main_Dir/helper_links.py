@@ -23,7 +23,7 @@ class GetLink:
         else:
             print(f'This page either does not exist or is out.\nResppnse: {response}')
         
-        all_links = helper_generic_tags.GenericGetTags.get_tags(response.text, 'a', {'href': True})
+        all_links = helper_generic_tags.GenericGetTags.get_tags(response.content, 'a', {'href': True})
 
         return all_links
 
