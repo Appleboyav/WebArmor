@@ -1,3 +1,4 @@
+# from ..Main_Dir import helper_generic_tags as helper
 import requests
 from bs4 import BeautifulSoup as bs
 import helper_url_encode as UrlEncodeHelper
@@ -11,7 +12,7 @@ def get_user_token() -> str:
         res = c.get(f"{BASE_URL}/login.php")
         soup = bs(res.text, "html.parser")
         cookies = soup.find_all("input", {"type": "hidden"})
-        # cookies = helper.GenericGetTags.get_tags(html_page, "input", {"type": "hidden"})
+        # cookies = helper.GenericGetTags.get_tags(res.content, "input", {"type": "hidden"})
         user_token = cookies[0]["value"]
 
         return user_token
