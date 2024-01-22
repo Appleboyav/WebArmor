@@ -2,8 +2,6 @@ import requests
 from Helpers import helper_generic_tags
 from bs4 import BeautifulSoup as bs
 from Helpers import helper_dvwa
-from urllib.parse import quote
-from Helpers import helper_labels
 
 
 class SQLi:
