@@ -56,7 +56,6 @@ class SQLi:
         }
 
         with requests.Session() as sess:
-
             sess.cookies.update(cookies_dict)
 
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
@@ -86,6 +85,7 @@ class SQLi:
                     print(is_vulnerable[0], is_vulnerable[1])  # TODO: DEBUG remove
                     print("*" * 100)  # TODO: DEBUG remove
 
+                    # Writing the results into a log file
                     with open("ErrorBasedSQLi.txt", "a") as file:
                         file.write(f"Result (has succeed): {is_vulnerable[0]}\nDescription: {is_vulnerable[1]}\n")
                         file.write("_"*50 + "\n")
