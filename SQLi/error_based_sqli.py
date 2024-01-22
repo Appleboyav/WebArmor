@@ -1,6 +1,7 @@
 import requests
 from Helpers import helper_generic_tags
 from bs4 import BeautifulSoup as bs
+from Helpers import helper_dvwa
 from urllib.parse import quote
 from Helpers import helper_labels
 
@@ -51,20 +52,20 @@ class SQLi:
 
         for word in words_to_check:
             if word in full_text:
-                return (True, f" - Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>")
-            return (False, " - We haven't found your website vulnerable to Error based SQL Injection attack...")
+                return (True, f"Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>")
+            return (False, f"We haven't found your website vulnerable to Error based SQL Injection attack...\nThis is the payload that we tried to inject <{sqli_payload}>")
 
     @staticmethod
     def main():
+        with open("ErrorBasedSQLi.txt", "w") as file:
+            file.write("")
+
         sqli_payload_list = SQLi.__get_sqli_payload_list()
         print(f"sqli_payload_list -> {sqli_payload_list}")
 
-        # control_query = ""
-        # sqli_query = ""
-
         # http://127.0.0.1:80/DVWA/login.php
         login_page_url = input("Enter login page url (to bypass it): ")
-        user_token = SQLi.__get_user_token(login_page_url)
+        user_token = helper_dvwa.get_user_token(login_page_url)
 
         cookies_dict = {
             "PHPSESSID": user_token,
@@ -74,54 +75,37 @@ class SQLi:
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
 
-            input_url_to_check = input("Please enter website url you want to check for Error Based SQL Injection: ")
+            input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
             url_to_check_res = sess.get(input_url_to_check)
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.content, "form", None)
-            print("*"*100)
+            print("*"*100)  # TODO: DEBUG remove
 
             for form in forms:
-                print(f"1 - {form}")  # DEBUG
+                print(f"1 - {form}")  # TODO: DEBUG remove
                 for payload in sqli_payload_list:
-                    print(f"2 - {payload}")  # DEBUG
+                    print(f"2 - {payload}")  # TODO: DEBUG remove
 
                     if form["method"] == "GET":
                         get_input_tags_as_dict = SQLi.__extract_input_values(form)
-                        print(f"3 - {get_input_tags_as_dict}")  # DEBUG
+                        print(f"3 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
 
                         for key, value in get_input_tags_as_dict.items():
                             if value is None:
                                 get_input_tags_as_dict[key] = payload
-                        print(f"4 - {get_input_tags_as_dict}")  # DEBUG
+                        print(f"4 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
 
                         response = sess.get(input_url_to_check, params=get_input_tags_as_dict)
-                        print(f"5 - {response.text}")  # DEBUG
+                        print(f"5 - {response.text}")  # TODO: DEBUG remove
 
                     is_vulnerable = SQLi.__check_sqli_success(response, payload)
-                    print(is_vulnerable[0], is_vulnerable[1])
-                    print("*" * 100)
-                        # with open("result.txt", "a") as file:
-                        #     file.write(response.text)
-                        #     file.write("*"*100)
+                    print(is_vulnerable[0], is_vulnerable[1])  # TODO: DEBUG remove
+                    print("*" * 100)  # TODO: DEBUG remove
 
+                    with open("ErrorBasedSQLi.txt", "a") as file:
+                        file.write(f"Result (has succeed): {is_vulnerable[0]}\nDescription: {is_vulnerable[1]}\n")
+                        file.write("*"*50 + "\n")
 
-
-
-            # for key, value in test_dict.items():
-            #     if value is None:
-            #         print(f"{key} value is None")
-            #     else:
-            #         print(f"{key} is NOT None")
-
-            # for single_form in forms:
-            #     dict_params = {}
-            #     # input_tags = helper_labels.GetLabels.get_labels_from_html(single_form)
-            #     input_tags = helper_generic_tags.GetGenericTags.get_tags(single_form, "input", None)
-            #     print(single_form)
-            #
-            #     for one_input_tag in input_tags:
-            #         # dict_params[one_input_tag["name"]]
-            #         print(one_input_tag)
 
 if __name__ == '__main__':
     SQLi.main()
