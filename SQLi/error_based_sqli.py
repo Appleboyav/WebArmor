@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 from Helpers import helper_generic_tags
 from bs4 import BeautifulSoup as bs
@@ -5,23 +6,6 @@ from Helpers import helper_dvwa
 
 
 class SQLi:
-    USER_PARAMETER_MARKDOWN = "*HERE*"
-
-    @staticmethod
-    def __get_user_token(login_page_url) -> str:
-        with requests.Session() as sess:
-            res = sess.get(login_page_url)
-            cookies = helper_generic_tags.GetGenericTags.get_tags(res.content, "input", {"type": "hidden"})
-            user_token = cookies[0]["value"]
-
-            return user_token
-
-    # @staticmethod
-    # def __attack_success(control_response, sqli_response):
-    #     if control_response.content != sqli_response.content:
-    #         return True
-    #     return False
-
     @staticmethod
     def __extract_input_values(form):
         dict_input_values = {}
@@ -55,11 +39,12 @@ class SQLi:
 
     @staticmethod
     def main():
-        with open("ErrorBasedSQLi.txt", "w") as file:
-            file.write("")
+        with open("ErrorBasedSQLi.txt", "a") as file:
+            file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} - Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
+            file.write("_"*50 + "\n")
 
         sqli_payload_list = SQLi.__get_sqli_payload_list()
-        print(f"sqli_payload_list -> {sqli_payload_list}")
+        # print(f"sqli_payload_list -> {sqli_payload_list}")
 
         # http://127.0.0.1:80/DVWA/login.php
         login_page_url = input("Enter login page url (to bypass it): ")
@@ -71,6 +56,7 @@ class SQLi:
         }
 
         with requests.Session() as sess:
+
             sess.cookies.update(cookies_dict)
 
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
@@ -102,7 +88,7 @@ class SQLi:
 
                     with open("ErrorBasedSQLi.txt", "a") as file:
                         file.write(f"Result (has succeed): {is_vulnerable[0]}\nDescription: {is_vulnerable[1]}\n")
-                        file.write("*"*50 + "\n")
+                        file.write("_"*50 + "\n")
 
 
 if __name__ == '__main__':
