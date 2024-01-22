@@ -1,15 +1,16 @@
 # from ..Main_Dir import helper_generic_tags as helper
 import requests
 from bs4 import BeautifulSoup as bs
-import helper_url_encode as UrlEncodeHelper
+from Helpers import helper_url_encode as UrlEncodeHelper
+
 # need to make a relative import of "helper_generic_tags.py" makes the code much easier
 
 SEPERATOR = ("_"*80)
 BASE_URL = "http://127.0.0.1:80/DVWA"
 
 def get_user_token() -> str:
-    with requests.Session() as c:
-        res = c.get(f"{BASE_URL}/login.php")
+    with requests.Session() as sess:
+        res = sess.get(f"{BASE_URL}/login.php")
         soup = bs(res.text, "html.parser")
         cookies = soup.find_all("input", {"type": "hidden"})
         # cookies = helper.GenericGetTags.get_tags(res.content, "input", {"type": "hidden"})

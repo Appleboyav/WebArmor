@@ -1,0 +1,127 @@
+import requests
+from Helpers import helper_generic_tags
+from bs4 import BeautifulSoup as bs
+from urllib.parse import quote
+from Helpers import helper_labels
+
+
+class SQLi:
+    USER_PARAMETER_MARKDOWN = "*HERE*"
+
+    @staticmethod
+    def __get_user_token(login_page_url) -> str:
+        with requests.Session() as sess:
+            res = sess.get(login_page_url)
+            cookies = helper_generic_tags.GetGenericTags.get_tags(res.content, "input", {"type": "hidden"})
+            user_token = cookies[0]["value"]
+
+            return user_token
+
+    # @staticmethod
+    # def __attack_success(control_response, sqli_response):
+    #     if control_response.content != sqli_response.content:
+    #         return True
+    #     return False
+
+    @staticmethod
+    def __extract_input_values(form):
+        dict_input_values = {}
+        input_tags = form.find_all("input")
+
+        for input_tag in input_tags:
+            name = input_tag.get("name")
+            value = input_tag.get("value")
+
+            dict_input_values[name] = value
+
+        return dict_input_values
+
+    @staticmethod
+    def __get_sqli_payload_list():
+        with open("error_based_sqli_payloads.txt", "r") as file:
+            sqli_payload_list = file.read().split("\n")
+        return sqli_payload_list[:-1]
+
+    @staticmethod
+    def __check_sqli_success(html, sqli_payload):
+        words_to_check = ["error", "Error", "You have an error in your SQL syntax", "error in your SQL syntax", "Uncaught mysqli_sql_exception"]
+
+        soup = bs(html.content, "html.parser")
+        full_text = soup.get_text()
+
+        for word in words_to_check:
+            if word in full_text:
+                return (True, f" - Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>")
+            return (False, " - We haven't found your website vulnerable to Error based SQL Injection attack...")
+
+    @staticmethod
+    def main():
+        sqli_payload_list = SQLi.__get_sqli_payload_list()
+        print(f"sqli_payload_list -> {sqli_payload_list}")
+
+        # control_query = ""
+        # sqli_query = ""
+
+        # http://127.0.0.1:80/DVWA/login.php
+        login_page_url = input("Enter login page url (to bypass it): ")
+        user_token = SQLi.__get_user_token(login_page_url)
+
+        cookies_dict = {
+            "PHPSESSID": user_token,
+            "security": "low"
+        }
+
+        with requests.Session() as sess:
+            sess.cookies.update(cookies_dict)
+
+            input_url_to_check = input("Please enter website url you want to check for Error Based SQL Injection: ")
+            url_to_check_res = sess.get(input_url_to_check)
+
+            forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.content, "form", None)
+            print("*"*100)
+
+            for form in forms:
+                print(f"1 - {form}")  # DEBUG
+                for payload in sqli_payload_list:
+                    print(f"2 - {payload}")  # DEBUG
+
+                    if form["method"] == "GET":
+                        get_input_tags_as_dict = SQLi.__extract_input_values(form)
+                        print(f"3 - {get_input_tags_as_dict}")  # DEBUG
+
+                        for key, value in get_input_tags_as_dict.items():
+                            if value is None:
+                                get_input_tags_as_dict[key] = payload
+                        print(f"4 - {get_input_tags_as_dict}")  # DEBUG
+
+                        response = sess.get(input_url_to_check, params=get_input_tags_as_dict)
+                        print(f"5 - {response.text}")  # DEBUG
+
+                    is_vulnerable = SQLi.__check_sqli_success(response, payload)
+                    print(is_vulnerable[0], is_vulnerable[1])
+                    print("*" * 100)
+                        # with open("result.txt", "a") as file:
+                        #     file.write(response.text)
+                        #     file.write("*"*100)
+
+
+
+
+            # for key, value in test_dict.items():
+            #     if value is None:
+            #         print(f"{key} value is None")
+            #     else:
+            #         print(f"{key} is NOT None")
+
+            # for single_form in forms:
+            #     dict_params = {}
+            #     # input_tags = helper_labels.GetLabels.get_labels_from_html(single_form)
+            #     input_tags = helper_generic_tags.GetGenericTags.get_tags(single_form, "input", None)
+            #     print(single_form)
+            #
+            #     for one_input_tag in input_tags:
+            #         # dict_params[one_input_tag["name"]]
+            #         print(one_input_tag)
+
+if __name__ == '__main__':
+    SQLi.main()
