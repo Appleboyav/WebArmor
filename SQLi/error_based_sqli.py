@@ -40,7 +40,7 @@ class SQLi:
     @staticmethod
     def main():
         with open("ErrorBasedSQLi.txt", "a") as file:
-            file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} - Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
+            file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
             file.write("_"*50 + "\n")
 
         sqli_payload_list = SQLi.__get_sqli_payload_list()

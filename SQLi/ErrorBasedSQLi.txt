@@ -1,4 +1,4 @@
-## Date: 22-01-2024 - Time: 04:33:34 ##
+## Date: 22-01-2024 ~ Time: 13:58:46 ##
 __________________________________________________
 Result (has succeed): False
 Description: We haven't found your website vulnerable to Error based SQL Injection attack...
@@ -615,10 +615,4 @@ __________________________________________________
 Result (has succeed): True
 Description: Your website is vulnerable to Error based SQL Injection attack!
 This is the payload that was injected < and (select substring(@@version,3,1))='X'>
-__________________________________________________
-## Date: 22-01-2024 - Time: 04:34:24 ##
-__________________________________________________
-Result (has succeed): False
-Description: We haven't found your website vulnerable to Error based SQL Injection attack...
-This is the payload that we tried to inject <1>
 __________________________________________________
