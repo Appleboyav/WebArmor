@@ -20,8 +20,8 @@ class SQLi:
         return dict_input_values
 
     @staticmethod
-    def __get_sqli_payload_list(path="error_based_sqli_payloads.txt") -> list:
-        with open(path, "r") as file:
+    def __get_sqli_payload_list(payload_path="error_based_sqli_payloads.txt") -> list:
+        with open(payload_path, "r") as file:
             sqli_payload_list = file.read().split("\n")
         return sqli_payload_list[:-1]
 
@@ -39,7 +39,8 @@ class SQLi:
 
     @staticmethod
     def main():
-        with open("ErrorBasedSQLi.txt", "a") as file:
+        LOG_FILE_PATH = "ErrorBased_SQLi_Logs.txt"
+        with open(LOG_FILE_PATH, "a") as file:
             file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
             file.write("_"*50 + "\n")
 
@@ -86,7 +87,7 @@ class SQLi:
                     print("*" * 100)  # TODO: DEBUG remove
 
                     # Writing the results into a log file
-                    with open("ErrorBasedSQLi.txt", "a") as file:
+                    with open(LOG_FILE_PATH, "a") as file:
                         file.write(f"Result (has succeed): {is_vulnerable[0]}\nDescription: {is_vulnerable[1]}\n")
                         file.write("_"*50 + "\n")
 
