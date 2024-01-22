@@ -8,4 +8,4 @@ def get_user_token(login_page_url) -> str:
         cookies = helper_generic_tags.GetGenericTags.get_tags(res.content, "input", {"type": "hidden"})
         user_token = cookies[0]["value"]
 
-        return user_token
+    return user_token

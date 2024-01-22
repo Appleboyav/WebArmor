@@ -7,7 +7,7 @@ from Helpers import helper_dvwa
 
 class SQLi:
     @staticmethod
-    def __extract_input_values(form):
+    def __extract_input_values(form) -> dict:
         dict_input_values = {}
         input_tags = form.find_all("input")
 
@@ -20,13 +20,13 @@ class SQLi:
         return dict_input_values
 
     @staticmethod
-    def __get_sqli_payload_list():
-        with open("error_based_sqli_payloads.txt", "r") as file:
+    def __get_sqli_payload_list(path="error_based_sqli_payloads.txt") -> list:
+        with open(path, "r") as file:
             sqli_payload_list = file.read().split("\n")
         return sqli_payload_list[:-1]
 
     @staticmethod
-    def __check_sqli_success(html, sqli_payload):
+    def __check_sqli_success(html, sqli_payload) -> tuple:
         words_to_check = ["error", "Error", "You have an error in your SQL syntax", "error in your SQL syntax", "Uncaught mysqli_sql_exception"]
 
         soup = bs(html.content, "html.parser")
