@@ -1,7 +1,7 @@
 from datetime import datetime
 import requests
-from Helpers import helper_generic_tags
 from bs4 import BeautifulSoup as bs
+from Helpers import helper_generic_tags
 from Helpers import helper_dvwa
 
 
