@@ -34,8 +34,8 @@ class SQLi:
 
         for word in words_to_check:
             if word in full_text:
-                return (True, f"Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>")
-            return (False, f"We haven't found your website vulnerable to Error based SQL Injection attack...\nThis is the payload that we tried to inject <{sqli_payload}>")
+                return True, f"Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>"
+            return False, f"We haven't found your website vulnerable to Error based SQL Injection attack...\nThis is the payload that we tried to inject <{sqli_payload}>"
 
     @staticmethod
     def main():
@@ -53,6 +53,7 @@ class SQLi:
 
         cookies_dict = {
             "PHPSESSID": user_token,
+            # "security": "medium"
             "security": "low"
         }
 
@@ -62,7 +63,7 @@ class SQLi:
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
             url_to_check_res = sess.get(input_url_to_check)
 
-            forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.content, "form", None)
+            forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", None)
             print("*"*100)  # TODO: DEBUG remove
 
             for form in forms:
@@ -70,7 +71,9 @@ class SQLi:
                 for payload in sqli_payload_list:
                     print(f"2 - {payload}")  # TODO: DEBUG remove
 
+                    # For GET req
                     if form["method"] == "GET":
+                        print("GET METHOD")
                         get_input_tags_as_dict = SQLi.__extract_input_values(form)
                         print(f"3 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
 
@@ -81,6 +84,22 @@ class SQLi:
 
                         response = sess.get(input_url_to_check, params=get_input_tags_as_dict)
                         print(f"5 - {response.text}")  # TODO: DEBUG remove
+
+                    # region POST for medium level
+                    # # For POST req
+                    # elif form["method"] == "POST":
+                    #     print("POST METHOD")
+                    #     get_input_tags_as_dict = SQLi.__extract_input_values(form)
+                    #     print(f"3 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
+                    #
+                    #     for key, value in get_input_tags_as_dict.items():
+                    #         if value is None:
+                    #             get_input_tags_as_dict[key] = payload
+                    #     print(f"4 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
+                    #
+                    #     response = sess.post(input_url_to_check, params=get_input_tags_as_dict)
+                    #     print(f"5 - {response.text}")  # TODO: DEBUG remove
+                    # endregion
 
                     is_vulnerable = SQLi.__check_sqli_success(response, payload)
                     print(is_vulnerable[0], is_vulnerable[1])  # TODO: DEBUG remove
