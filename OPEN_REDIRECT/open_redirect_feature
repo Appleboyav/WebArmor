@@ -1,0 +1,41 @@
+import requests
+from bs4 import BeautifulSoup as bs
+
+BASE_URL = "http://127.0.0.1:80/DVWA"
+
+
+
+def get_user_token() -> str:
+    with requests.Session() as c:
+        res = c.get(f"{BASE_URL}/login.php")
+        soup = bs(res.text, "html.parser")
+        cookie = soup.find_all("input", {"type": "hidden"})
+        user_token = cookie[0]["value"]
+    return user_token
+    
+
+COOKIES_JSON = {
+    "PHPSESSID": get_user_token(),
+    "security": "low"
+}
+
+
+def check_open_redirect(url):
+
+    # Pass the login page: "http://127.0.0.1:80/DVWA/index.php"
+    # session = requests.Session()
+    # index_page_response = session.get(f"{BASE_URL}/index.php", cookies = COOKIES_JSON)
+
+    payload = {'redirect_param': ''}
+    # response = session.get(url, params=payload, allow_redirects=False)
+    response = requests.get(url, params=payload, allow_redirects=False)
+
+    if response.status_code == 302 and 'Location' in response.headers:
+        print(f'open redirect detected. Redirect location: {response.headers["Location"]}')
+    else:
+        print('No open redirect vulnerability detected.')
+
+
+# http://localhost/DVWA/vulnerabilities/open_redirect/
+# https://owasp.org/www-project-juice-shop/
+check_open_redirect('http://localhost/DVWA/vulnerabilities/open_redirect/')
