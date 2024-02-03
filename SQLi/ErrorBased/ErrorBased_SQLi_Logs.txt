@@ -1578,3 +1578,17 @@ This is the payload that was injected <'>
 __________________________________________________
 ## Date: 03-02-2024 ~ Time: 22:51:30 ##
 __________________________________________________
+## Date: 03-02-2024 ~ Time: 23:25:43 ##
+__________________________________________________
+Result (has succeed): False
+Description: We haven't found your website vulnerable to Error based SQL Injection attack...
+This is the payload that we tried to inject <1 UNION SELECT user, password FROM users -->
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <' asdasd>
+__________________________________________________
+Result (has succeed): True
+Description: Your website is vulnerable to Error based SQL Injection attack!
+This is the payload that was injected <'>
+__________________________________________________

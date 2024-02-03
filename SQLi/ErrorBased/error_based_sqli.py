@@ -45,7 +45,6 @@ class SQLi:
             file.write("_"*50 + "\n")
 
         sqli_payload_list = SQLi.__get_sqli_payload_list()
-        # print(f"sqli_payload_list -> {sqli_payload_list}")
 
         # http://127.0.0.1:80/DVWA/login.php
         login_page_url = input("Enter login page url (to bypass it): ")
