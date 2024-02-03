@@ -34,17 +34,18 @@ class SQLi:
 
         for word in words_to_check:
             if word in full_text:
-                return True, f"Your website is vulnerable to Error based SQL Injection attack!\nThis is the payload that was injected <{sqli_payload}>"
-            return False, f"We haven't found your website vulnerable to Error based SQL Injection attack...\nThis is the payload that we tried to inject <{sqli_payload}>"
+                return True, f"Website is vulnerable to Error based SQL Injection attack!\nInjected payload: <{sqli_payload}>."
+            return False, f"The payload <{sqli_payload}> was not injected."
 
     @staticmethod
     def main():
+        scan_result_dict = {}
+        sqli_payload_list = SQLi.__get_sqli_payload_list()
         LOG_FILE_PATH = "ErrorBased_SQLi_Logs.txt"
+
         with open(LOG_FILE_PATH, "a") as file:
             file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
-            file.write("_"*50 + "\n")
-
-        sqli_payload_list = SQLi.__get_sqli_payload_list()
+            file.write("-"*50 + "\n")
 
         # http://127.0.0.1:80/DVWA/login.php
         login_page_url = input("Enter login page url (to bypass it): ")
@@ -52,40 +53,34 @@ class SQLi:
 
         cookies_dict = {
             "PHPSESSID": user_token,
-            # "security": "medium"
             "security": "low"
+            # "security": "medium"
         }
 
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
 
+            # http://localhost/DVWA/vulnerabilities/sqli/
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
             url_to_check_res = sess.get(input_url_to_check)
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
-            print("*"*100)  # TODO: DEBUG remove
 
             for form in forms:
-                print(f"1 - {form}")  # TODO: DEBUG remove
                 for payload in sqli_payload_list:
-                    print(f"2 - {payload}")  # TODO: DEBUG remove
 
-                    # For GET req
+                    # For GET request
                     if form["method"] == "GET":
-                        print("GET METHOD")
                         get_input_tags_as_dict = SQLi.__extract_input_values(form)
-                        print(f"3 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
 
                         for key, value in get_input_tags_as_dict.items():
                             if value is None:
                                 get_input_tags_as_dict[key] = payload
-                        print(f"4 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
 
                         response = sess.get(input_url_to_check, params=get_input_tags_as_dict)
-                        print(f"5 - {response.text}")  # TODO: DEBUG remove
 
                     # region POST for medium level
-                    # # For POST req
+                    # # For POST request
                     # elif form["method"] == "POST":
                     #     print("POST METHOD")
                     #     get_input_tags_as_dict = SQLi.__extract_input_values(form)
@@ -100,13 +95,13 @@ class SQLi:
                     #     print(f"5 - {response.text}")  # TODO: DEBUG remove
                     # endregion
 
-                    is_vulnerable = SQLi.__check_sqli_success(response, payload)
-                    print(is_vulnerable[0], is_vulnerable[1])  # TODO: DEBUG remove
-                    print("*" * 100)  # TODO: DEBUG remove
+                    result_bool, result_description = SQLi.__check_sqli_success(response, payload)
+
+                    # scan_result_dict["Scan Result"] =
 
                     # Writing the results into a log file
                     with open(LOG_FILE_PATH, "a") as file:
-                        file.write(f"Result (has succeed): {is_vulnerable[0]}\nDescription: {is_vulnerable[1]}\n")
+                        file.write(f"Scan Result: {result_bool}\nScan Description: {result_description}\n")
                         file.write("_"*50 + "\n")
 
 
