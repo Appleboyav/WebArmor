@@ -11,6 +11,7 @@ COOKIES_JSON = {
 
 
 def main():
+    # TODO: elad removed this unused lines
     with requests.Session() as sess:
         sess.cookies.update(COOKIES_JSON)
 

@@ -13,10 +13,10 @@ COOKIES_JSON = {
 
 
 def main():
+    # TODO: elad removed this unused lines (20, 27)
     with requests.Session() as sess:
         sess.cookies.update(COOKIES_JSON)
 
-        # TODO: elad removed this unused lines (20, 27)
         # Pass the login page: "http://127.0.0.1:80/DVWA/index.php"
         index_page_response = sess.get(f"{BASE_URL}/index.php")
 
