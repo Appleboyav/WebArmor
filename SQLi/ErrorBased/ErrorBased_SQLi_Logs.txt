@@ -1,0 +1,27 @@
+## Date: 04-02-2024 ~ Time: 00:24:33 ##
+--------------------------------------------------
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: <'>
+__________________________________________________
+Scan Result: False
+Scan Description: Tried payload: <1> was not able to  inject.
+__________________________________________________
+## Date: 04-02-2024 ~ Time: 00:25:28 ##
+--------------------------------------------------
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: <'>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <1> was not injected.
+__________________________________________________
+## Date: 04-02-2024 ~ Time: 00:44:36 ##
+--------------------------------------------------
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: <'>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <1> was not injected.
+__________________________________________________
