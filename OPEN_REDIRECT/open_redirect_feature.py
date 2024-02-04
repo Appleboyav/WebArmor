@@ -1,32 +1,21 @@
 import requests
-from bs4 import BeautifulSoup as bs
+from Helpers import helper_dvwa
 
 BASE_URL = "http://127.0.0.1:80/DVWA"
-
-
-
-def get_user_token() -> str:
-    with requests.Session() as c:
-        res = c.get(f"{BASE_URL}/login.php")
-        soup = bs(res.text, "html.parser")
-        cookie = soup.find_all("input", {"type": "hidden"})
-        user_token = cookie[0]["value"]
-    return user_token
-    
-
 COOKIES_JSON = {
-    "PHPSESSID": get_user_token(),
+    "PHPSESSID": helper_dvwa.get_user_token(f"{BASE_URL}/login.php"),
     "security": "low"
 }
 
 
 def check_open_redirect(url):
-
+    # TODO: elad check if the code works
     # Pass the login page: "http://127.0.0.1:80/DVWA/index.php"
-    with requests.Session() as session:
-        index_page_response = session.get(f"{BASE_URL}/index.php", cookies = COOKIES_JSON)
+    with requests.Session() as sess:
+        sess.cookies.update(COOKIES_JSON)
+        index_page_response = sess.get(f"{BASE_URL}/index.php")
         payload = {'redirect_param': ''}
-        response = session.get(url, params=payload, allow_redirects=False, cookies = COOKIES_JSON)
+        response = sess.get(url, params=payload, allow_redirects=False)
         print(response.status_code)
 
         if response.status_code == 302 and 'Location' in response.headers:
