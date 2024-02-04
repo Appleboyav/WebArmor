@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-def get_all_noscript(url):
 
+def get_all_noscript(url):
     try:
         # Ensure the URL ends with a slash
         url = url.rstrip('/') + '/'
@@ -21,6 +21,7 @@ def get_all_noscript(url):
     except requests.RequestException as e:
         print(f"Error: {e}")
         return
+
 
 def find_encrypted_secret_word(non_script_elements, enrypted_secret_word):
     for element in non_script_elements:
