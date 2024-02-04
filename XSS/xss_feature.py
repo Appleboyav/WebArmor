@@ -1,5 +1,4 @@
 import requests
-from bs4 import BeautifulSoup as bs
 from Helpers import helper_dvwa
 from Helpers import helper_generic_tags
 
