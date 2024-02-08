@@ -41,28 +41,33 @@ submit_button.click()
 
 ##########################GET PASSWORDS LIST FROM FILE#################################################
 # TODO: elad check if the below line will work
-# filename = "passwords.txt"
-filename = "C:\magshimim\site_scanner_project\BRUTE_FORCE\passwords.txt"
+filename = "passwords.txt"
 password_list = []
 with open(filename, 'r') as file:
     for password in file:
         # Remove leading/trailing whitespaces and newlines
-        password = password.strip()
-        password_list.append(password)
+        password_list.append(password.strip())
+
+
+# TODO: Noam comment: organize the comments
+
 #######################################################################################################
 
-##########################TRY FIND THE PASSWORD########################################################
-fl = False
+##########################TRY TO FIND THE PASSWORD########################################################
+success = False
 for password in password_list:
     user = 'admin'
     driver.get(f"http://localhost/DVWA/vulnerabilities/brute/?username={user}&password={password}&Login=Login#")
     get_source = driver.page_source
     target_text = 'Welcome to the password protected area'
     if target_text in get_source:
-        fl = True
-        print("Your website is vulnerable to Brute Force attack!")
+        success = True
+        print("Your website is vulnerable to Brute Force attacks!")
         print(f'User: {user}, Password: {password}')
         break
-if not fl:
-    print("Your website is NOT vulnerable to Brute Force attack!")
+if not success:
+    print("Your website is NOT vulnerable to Brute Force attacks!")
+
+# TODO: add recommendation for website owner about prevention the attack
+
 #######################################################################################################
