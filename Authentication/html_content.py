@@ -13,11 +13,11 @@ def get_all_noscript(url):
             noscript_elements = soup.find_all("noscript")
 
             return noscript_elements
-        
+
         else:
             print(f"Error: Unable to get content. Status code: {response.status_code}")
             return
-        
+
     except requests.RequestException as e:
         print(f"Error: {e}")
         return
