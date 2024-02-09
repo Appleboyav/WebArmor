@@ -97,8 +97,6 @@ class SQLi:
 
                     result_bool, result_description = SQLi.__check_sqli_success(response, payload)
 
-                    # scan_result_dict["Scan Result"] =
-
                     # Writing the results into a log file
                     with open(LOG_FILE_PATH, "a") as file:
                         file.write(f"Scan Result: {result_bool}\nScan Description: {result_description}\n")
