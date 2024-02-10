@@ -4,8 +4,8 @@ from Helpers import helper_dvwa
 # print(get_login_cookies("http://localhost/DVWA/login.php"))
 # print(get_login_cookies("http://localhost/DVWA/login.php", 1))
 
-my_dict1 = helper_dvwa.get_login_cookies("http://localhost/DVWA/login.php")
-my_dict2 = helper_dvwa.get_login_cookies("http://localhost/DVWA/login.php", 1)
+my_dict1 = helper_dvwa.DVWA.get_login_cookies("http://localhost/DVWA/login.php")
+my_dict2 = helper_dvwa.DVWA.get_login_cookies("http://localhost/DVWA/login.php", 1)
 dup_my_dict1 = my_dict1
 
 # print(type(my_dict1))
