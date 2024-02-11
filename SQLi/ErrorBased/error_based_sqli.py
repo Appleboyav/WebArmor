@@ -51,6 +51,7 @@ class SQLi:
         login_page_url = input("Enter login page url (to bypass it): ")
         user_token = helper_dvwa.DVWA.get_user_token(login_page_url)
 
+        # cookies_dict_test = helper_dvwa.DVWA.get_login_cookies(login_page_url)
         cookies_dict = {
             "PHPSESSID": user_token,
             "security": "low"
