@@ -49,7 +49,7 @@ class SQLi:
 
         # http://127.0.0.1:80/DVWA/login.php
         login_page_url = input("Enter login page url (to bypass it): ")
-        user_token = helper_dvwa.get_user_token(login_page_url)
+        user_token = helper_dvwa.DVWA.get_user_token(login_page_url)
 
         cookies_dict = {
             "PHPSESSID": user_token,
