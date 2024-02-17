@@ -1,4 +1,6 @@
 import requests
+from typing import Dict
+
 from Helpers import helper_generic_tags
 
 
@@ -13,7 +15,7 @@ class DVWA:
         return user_token
 
     @staticmethod
-    def get_login_cookies(login_page_url: str, level: int = 0):
+    def get_login_cookies(login_page_url: str, level: int = 0) -> Dict[str, str]:
         security_level = ["low", "medium", "high", "impossible"]
 
         login_cookies = {
