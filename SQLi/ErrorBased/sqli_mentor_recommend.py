@@ -20,7 +20,7 @@ class SQLi:
         return dict_input_values
 
     @staticmethod
-    def __get_sqli_payload_list(payload_path="error_based_sqli_payloads.txt") -> list:
+    def __get_sqli_payload_list(payload_path="ErrorBased_SQLi_Payloads.txt") -> list:
         with open(payload_path, "r") as file:
             sqli_payload_list = file.read().split("\n")
         return sqli_payload_list[:-1]
