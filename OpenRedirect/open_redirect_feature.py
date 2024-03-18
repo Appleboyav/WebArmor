@@ -3,7 +3,7 @@ from Helpers import helper_dvwa
 
 BASE_URL = "http://127.0.0.1:80/DVWA"
 COOKIES_JSON = {
-    "PHPSESSID": helper_dvwa.get_user_token(f"{BASE_URL}/login.php"),
+    "PHPSESSID": helper_dvwa.DVWA.get_user_token(f"{BASE_URL}/login.php"),
     "security": "low"
 }
 

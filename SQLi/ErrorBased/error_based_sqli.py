@@ -60,9 +60,10 @@ class SQLi:
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
 
-            # http://localhost/DVWA/vulnerabilities/sqli/
+            # http://127.0.0.1/DVWA/vulnerabilities/sqli/
             input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
             url_to_check_res = sess.get(input_url_to_check)
+            print(url_to_check_res.text)
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
 
