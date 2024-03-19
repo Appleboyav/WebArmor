@@ -5,6 +5,7 @@ URL = "https://example.com/"
 
 
 def main():
+    # http://127.0.0.1/DVWA/vulnerabilities/sqli/
     input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
 
     sqli_atk = SQLi(input_url_to_check)

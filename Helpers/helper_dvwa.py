@@ -39,24 +39,6 @@ class DVWA:
 
         return dict_input_values
 
-    @staticmethod
-    def get_payload_list(file_path: str) -> list:
-        with open(file_path, "r") as file:
-            sqli_payload_list = file.read().split("\n")
-        return sqli_payload_list[:-1]
-
-    @staticmethod
-    def save_date_to_file(file_path: str):
-        with open(file_path, "a") as file:
-            file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
-            file.write("-"*50 + "\n")
-
-    @staticmethod
-    def save_logs_to_file(file_path, result_tuple):
-        with open(file_path, "a") as file:
-            file.write(f"Scan Result: {result_tuple[0]}\nScan Description: {result_tuple[1]}\n")
-            file.write("_" * 50 + "\n")
-
     # TODO: add a function that will use the brute force module created by elad to get the dvwa credentials (user name and pass)
     @staticmethod
     def get_credentials():
