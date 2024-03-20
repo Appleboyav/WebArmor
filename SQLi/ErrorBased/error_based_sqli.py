@@ -32,13 +32,13 @@ class SQLi(base_attack.Attack):
         return sqli_payload_list[:-1]
 
     @staticmethod
-    def save_date_to_file(file_path: str) -> None:
+    def __save_date_to_file(file_path: str) -> None:
         with open(file_path, "a") as file:
             file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
             file.write("-"*50 + "\n")
 
     @staticmethod
-    def save_logs_to_file(file_path: str, result_tuple: tuple) -> None:
+    def __save_logs_to_file(file_path: str, result_tuple: tuple) -> None:
         with open(file_path, "a") as file:
             file.write(f"Scan Result: {result_tuple[0]}\nScan Description: {result_tuple[1]}\n")
             file.write("_" * 50 + "\n")
@@ -48,33 +48,34 @@ class SQLi(base_attack.Attack):
 
         sqli_payload_list = SQLi.__get_sqli_payload(PAYLOADS_FILE_PATH)
         print(f"sqli_payload_list: {sqli_payload_list}")
+        print(f"len(sqli_payload_list): {len(sqli_payload_list)}")
 
         # Save current date to log file
         print("Saving current date to log file")
-        SQLi.save_date_to_file(LOGS_FILE_PATH)
+        SQLi.__save_date_to_file(LOGS_FILE_PATH)
 
         cookies_dict = {
             "security": "low"
         }
         print(cookies_dict)
 
-        """
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
 
             url_to_check_res = sess.get(self.url)
-            print(url_to_check_res.text)
+            print(f"url_to_check_res.text: {url_to_check_res.text}")
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
 
             for form in forms:
                 print(f"form: {form}")  #TODO: remove
                 for payload in sqli_payload_list:
+                    print("$"*60)
                     print(f"payload: {payload}")  #TODO: remove
 
                     # For GET request
                     if form["method"] == "GET":
-                        input_tags_as_dict = helper_dvwa.DVWA.extract_input_values(form)
+                        input_tags_as_dict = helper_dvwa.DVWA.extract_input_values(form)  # func also print type(form)
                         print(f"input_tags_as_dict: {input_tags_as_dict}")  #TODO: remove
 
                         for key, value in input_tags_as_dict.items():
@@ -89,8 +90,8 @@ class SQLi(base_attack.Attack):
                     print(f"result_bool, result_description: {result_bool, result_description}")  #TODO: remove
                     res_tup = result_bool, result_description
 
-                    SQLi.save_logs_to_file("logs.txt", res_tup)
-                """
+                    # Save the logs into file
+                    SQLi.__save_logs_to_file(LOGS_FILE_PATH, res_tup)
 
 # if __name__ == '__main__':
 #     SQLi.main()
