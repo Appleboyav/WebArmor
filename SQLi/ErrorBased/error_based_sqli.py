@@ -47,8 +47,8 @@ class SQLi(base_attack.Attack):
         print(f"Scanning from function: '{SQLi.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
 
         sqli_payload_list = SQLi.__get_sqli_payload(PAYLOADS_FILE_PATH)
-        print(f"sqli_payload_list: {sqli_payload_list}")
-        print(f"len(sqli_payload_list): {len(sqli_payload_list)}")
+        print(f"sqli_payload_list: {sqli_payload_list}")  #TODO: remove
+        print(f"len(sqli_payload_list): {len(sqli_payload_list)}")  #TODO: remove
 
         # Save current date to log file
         print("Saving current date to log file")
@@ -63,7 +63,7 @@ class SQLi(base_attack.Attack):
             sess.cookies.update(cookies_dict)
 
             url_to_check_res = sess.get(self.url)
-            print(f"url_to_check_res.text: {url_to_check_res.text}")
+            print(f"url_to_check_res.text: {url_to_check_res.text}")  #TODO: remove
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
 
