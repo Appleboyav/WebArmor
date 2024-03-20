@@ -42,7 +42,7 @@ class CSRF(base_attack.Attack):
         #     csrf_url_page = input("Please enter a website url to check CSRF: ")
         #     csrf_page_res = sess.get(csrf_url_page)
         #     print(csrf_page_res.text)
-
+        print(f"Scanning from function: '{CSRF.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
         self.test()
 
     def test(self):

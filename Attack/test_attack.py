@@ -8,7 +8,7 @@ class TestAttack(base_attack.Attack):
         super().__init__(url)
 
     def scan(self):
-        print(f"Scanning from function: '{TestAttack.scan.__name__}'\nclass: {self.__class__.__name__}\nurl:'{self.url}'\n")
+        print(f"Scanning from function: '{TestAttack.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
 
 
 # def main():

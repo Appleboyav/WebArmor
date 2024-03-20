@@ -20,7 +20,7 @@ class SQLi:
         return dict_input_values
 
     @staticmethod
-    def __get_sqli_payload_list(payload_path="ErrorBased_SQLi_Payloads.txt") -> list:
+    def __get_sqli_payload_list(payload_path="payloads.txt") -> list:
         with open(payload_path, "r") as file:
             sqli_payload_list = file.read().split("\n")
         return sqli_payload_list[:-1]
@@ -39,7 +39,7 @@ class SQLi:
 
     @staticmethod
     def main():
-        LOG_FILE_PATH = "ErrorBased_SQLi_Logs.txt"
+        LOG_FILE_PATH = "logs.txt"
         with open(LOG_FILE_PATH, "a") as file:
             file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
             file.write("_"*50 + "\n")
