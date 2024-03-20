@@ -26,7 +26,7 @@ class DVWA:
 
     @staticmethod
     def extract_input_values(form) -> dict:
-        print(f"type(form): {type(form)}")  # TODO: Remove debug line
+        # print(f"type(form): {type(form)}")  # TODO: Remove debug line
 
         dict_input_values = {}
         input_tags = form.find_all("input")
