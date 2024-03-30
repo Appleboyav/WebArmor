@@ -44,6 +44,7 @@ class SQLi(base_attack.Attack):
             file.write("_" * 50 + "\n")
 
     def scan(self):
+        # TODO: might be removed
         print(f"Scanning from function: '{SQLi.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
 
         sqli_payload_list = SQLi.__get_sqli_payload(PAYLOADS_FILE_PATH)
@@ -51,7 +52,7 @@ class SQLi(base_attack.Attack):
         # print(f"len(sqli_payload_list): {len(sqli_payload_list)}")  #TODO: remove
 
         # Save current date to log file
-        print("Saving current date to log file")
+        print("Saving current date to log file")  # TODO: might be removed
         SQLi.__save_date_to_file(LOGS_FILE_PATH)
 
         cookies_dict = {
@@ -93,7 +94,7 @@ class SQLi(base_attack.Attack):
                     # Save the logs into file
                     SQLi.__save_logs_to_file(LOGS_FILE_PATH, res_tup)
 
-        print(f"End of '{SQLi.scan.__name__}' function...")
+        print(f"End of '{SQLi.scan.__name__}' function...")  # TODO: might be removed
 
 # if __name__ == '__main__':
 #     SQLi.main()
