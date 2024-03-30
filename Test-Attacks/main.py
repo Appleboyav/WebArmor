@@ -22,7 +22,7 @@ def menu() -> None:
         print(f"\t{item.value}.\t{item.name}")
 
 
-def get_user_input() -> int:
+def get_user_choice() -> int:
     lowest_value = (min(Attack_Choice, key=lambda x: x.value)).value
     highest_value = (max(Attack_Choice, key=lambda x: x.value)).value
 
@@ -42,8 +42,14 @@ def get_user_input() -> int:
 def main():
     welcome_screen()
     menu()
-    user_choice = get_user_input()
+    user_choice = get_user_choice()
     print(user_choice)
+
+    # Create a list of attack objects and based on the user choice use that object and run it's scan function
+    attack_obj = [error_based_sqli.SQLi, csrf_new.CSRF]
+    attack = attack_obj[user_choice-1]("http://127.0.0.1/DVWA/vulnerabilities/sqli/")  # Create a function to get url from user.
+
+    attack.scan()
 
 
 if __name__ == "__main__":
