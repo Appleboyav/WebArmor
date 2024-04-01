@@ -11,36 +11,39 @@ COOKIES_JSON = {
     "security": "low"
 }
 
-
 class XSS(base_attack.Attack):
 
     def __init__(self, url):
         super().__init__(url)
 
     @staticmethod
-    def main():
-        # TODO: elad removed this unused lines (20, 27)
+    def pass_login_page(session, url):
+        session.cookies.update(COOKIES_JSON)
+        return session.get(f"{url}/index.php")
+
+    @staticmethod
+    def enter_xss_reflected_page(session, url):
+        return session.get(f"{url}/vulnerabilities/xss_r/")
+
+    @staticmethod
+    def insert_data_and_check_script(session, url):
+        res = session.get(f"{url}/vulnerabilities/xss_r/", params=INJECT_DATA)
+        return SCRIPT in res.text
+
+    def scan(self):
         with requests.Session() as sess:
-            sess.cookies.update(COOKIES_JSON)
-
-            # Pass the login page: "http://127.0.0.1:80/DVWA/index.php"
-            index_page_response = sess.get(f"{BASE_URL}/index.php")
-
-            # Entering to xss reflected page : "http://127.0.0.1:80/DVWA/vulnerabilities/xss_r"
-            xss_r_page = sess.get(f"{BASE_URL}/vulnerabilities/xss_r/")
-
-            # To see the structure of the data we need to send:
+            self.pass_login_page(sess, self.url)
+            xss_r_page = self.enter_xss_reflected_page(sess, self.url)
             ls_forms = helper_generic_tags.GetGenericTags.get_tags(xss_r_page.text, "form", {})
-
-            # Inserting the data and in put the script in the name filed:
-            res = sess.get(f"{BASE_URL}/vulnerabilities/xss_r/", params=INJECT_DATA)
-
-            # Check if the script saved in the website:
-            if SCRIPT in res.text:
+            if self.insert_data_and_check_script(sess, self.url):
                 print("Your website is vulnerable to XSS Injection attack!")
             else:
                 print("Your website is NOT vulnerable to XSS Injection attack.")
 
+def main():
+    xssAttack = XSS(BASE_URL)
+    XSS.scan(xssAttack)
+
 
 if __name__ == "__main__":
-    XSS.main()
+    main()
