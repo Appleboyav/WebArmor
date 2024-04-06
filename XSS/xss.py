@@ -11,8 +11,8 @@ COOKIES_JSON = {
     "security": "low"
 }
 
-class XSS(base_attack.Attack):
 
+class XSS(base_attack.Attack):
     def __init__(self, url):
         super().__init__(url)
 
@@ -40,10 +40,11 @@ class XSS(base_attack.Attack):
             else:
                 print("Your website is NOT vulnerable to XSS Injection attack.")
 
-def main():
-    xssAttack = XSS(BASE_URL)
-    XSS.scan(xssAttack)
 
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     xssAttack = XSS(BASE_URL)
+#     XSS.scan(xssAttack)
+#
+#
+# if __name__ == "__main__":
+#     main()
