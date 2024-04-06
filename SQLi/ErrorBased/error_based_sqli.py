@@ -1,9 +1,11 @@
-import requests
 from datetime import datetime
+
+import requests
 from bs4 import BeautifulSoup as bs
-from Helpers import helper_generic_tags
-from Helpers import helper_dvwa
+
 from Attack import base_attack
+from Helpers import helper_dvwa
+from Helpers import helper_generic_tags
 
 LOGS_FILE_PATH = "sqli_logs.txt"
 PAYLOADS_FILE_PATH = "sqli_payloads.txt"
@@ -94,6 +96,7 @@ class SQLi(base_attack.Attack):
                     # Save the logs into file
                     SQLi.__save_logs_to_file(LOGS_FILE_PATH, res_tup)
 
+        print(f"Saved scan logs into {LOGS_FILE_PATH}")
         print(f"End of '{SQLi.scan.__name__}' function...")  # TODO: might be removed
 
 # if __name__ == '__main__':
