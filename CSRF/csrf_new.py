@@ -1,8 +1,8 @@
 import requests
-from Helpers import helper_dvwa
-from Helpers import helper_generic_tags
+
 from Attack import base_attack
 from Attack import test_attack
+from Helpers import helper_dvwa
 
 URL = "https://example.com/"
 
@@ -13,6 +13,7 @@ URL = "https://example.com/"
 4. לעשות redirect בחזרה לכתובת הראשונית
 """
 # test123
+# TODO: need to finish this class
 
 
 class CSRF(base_attack.Attack):
@@ -25,14 +26,6 @@ class CSRF(base_attack.Attack):
         cookies_dict = {
             "security": "low"
         }
-
-        # cookies_dict = {
-        #     # "username": "admin",
-        #     # "password": "password",
-        #     # "Login": "Login",
-        #     "PHPSESSID": user_token,
-        #     "security": "low"
-        # }
 
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
@@ -49,6 +42,7 @@ class CSRF(base_attack.Attack):
 
         print(f"Scanning from function: '{CSRF.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
         self.test()
+
 
     def test(self):
         t1 = base_attack.Attack(self.url)

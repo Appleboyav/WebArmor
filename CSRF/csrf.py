@@ -54,7 +54,5 @@ class CSRF:
             print(scan_result)
 
 
-
-
 if __name__ == "__main__":
     CSRF.main()
