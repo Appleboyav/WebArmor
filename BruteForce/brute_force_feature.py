@@ -1,8 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+
 from Attack import base_attack
 
 BASE_URL = "http://localhost/DVWA/login.php"
+
 
 class BruteForce(base_attack.Attack):
 
@@ -79,17 +81,17 @@ class BruteForce(base_attack.Attack):
         self.change_security_level(driver)
 
         # Get passwords list from file
-        filename = "passwords.txt"
+        filename = "passwords_brute.txt"
         password_list = self.get_passwords_from_file(filename)
 
         # Try to find the password
         self.try_passwords(driver, password_list)
 
 
-def main():
-    bruteForceAttack = BruteForce(BASE_URL)
-    BruteForce.scan(bruteForceAttack)
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     bruteForceAttack = BruteForce(BASE_URL)
+#     BruteForce.scan(bruteForceAttack)
+#
+#
+# if __name__ == '__main__':
+#     main()
