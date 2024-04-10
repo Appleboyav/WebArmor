@@ -2,8 +2,8 @@ from enum import Enum
 import pyfiglet_ascii_art
 import validators
 
-from CSRF import csrf_new
 from SQLi.ErrorBased import error_based_sqli
+from CSRF import csrf_scan
 from BruteForce import brute_force_feature
 from XSS import xss
 
@@ -66,11 +66,12 @@ def main():
     url_to_scan: str = validate_url()
 
     # Create a list of attack objects and based on the user choice use that object and run it's scan function
-    attacks_obj_list = [error_based_sqli.SQLi, csrf_new.CSRF, xss.XSS, brute_force_feature.BruteForce]
+    attacks_obj_list = [error_based_sqli.SQLi, csrf_scan.CSRF, xss.XSS, brute_force_feature.BruteForce]
     attack_choice = attacks_obj_list[user_choice-1](url_to_scan)  # Create a function to get url from user.
 
     # Run scan attack
-    attack_choice.scan()
+    attack_res = attack_choice.scan()
+    print(attack_res)
 
 
 if __name__ == "__main__":
