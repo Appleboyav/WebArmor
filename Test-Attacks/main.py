@@ -71,7 +71,8 @@ def main():
 
     # Run scan attack
     attack_res = attack_choice.scan()
-    print(attack_res)
+    if attack_res is not None:
+        print(attack_res)
 
 
 if __name__ == "__main__":
