@@ -6,7 +6,7 @@ import html_content
 print("Hello, if you are a website owner and you want us to check for you if there are any security holes on your website,Follow the next steps\n")
 
 # Get URL website:
-url =  input("Enter your URL website: ")
+url = input("Enter your URL website: ")
 
 # Get secret word:
 secret_word = input("Enter your secret word: ")
