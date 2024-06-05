@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup as bs
+from typing import List, Set
 
 
 class GetGenericTags:
     @staticmethod
-    def get_tags(html_page: str, tag_type: str, tag_attrs: dict) -> list(set()):
+    def get_tags(html_page: str, tag_type: str, tag_attrs: dict = None) -> List[Set]:
         """
         This function will return a list(set()) of specified the tag_type.
         

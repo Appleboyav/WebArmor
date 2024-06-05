@@ -1,29 +1,19 @@
 from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup as bs
-from Helpers import helper_generic_tags
+
+from Attack import base_attack
 from Helpers import helper_dvwa
+from Helpers import helper_generic_tags
+
+LOGS_FILE_PATH = "sqli_logs.txt"
+PAYLOADS_FILE_PATH = "sqli_payloads.txt"
 
 
-class SQLi:
-    @staticmethod
-    def __extract_input_values(form) -> dict:
-        dict_input_values = {}
-        input_tags = form.find_all("input")
-
-        for input_tag in input_tags:
-            name = input_tag.get("name")
-            value = input_tag.get("value")
-
-            dict_input_values[name] = value
-
-        return dict_input_values
-
-    @staticmethod
-    def __get_sqli_payload_list(payload_path="error_based_sqli_payloads.txt") -> list:
-        with open(payload_path, "r") as file:
-            sqli_payload_list = file.read().split("\n")
-        return sqli_payload_list[:-1]
+class SQLi(base_attack.Attack):
+    def __init__(self, url):
+        super().__init__(url)
 
     @staticmethod
     def __check_sqli_success(html, sqli_payload) -> tuple:
@@ -38,71 +28,77 @@ class SQLi:
             return False, f"The payload <{sqli_payload}> was not injected."
 
     @staticmethod
-    def main():
-        scan_result_dict = {}
-        sqli_payload_list = SQLi.__get_sqli_payload_list()
-        LOG_FILE_PATH = "ErrorBased_SQLi_Logs.txt"
+    def __get_sqli_payload(file_path: str) -> list:
+        with open(file_path, "r") as file:
+            sqli_payload_list = file.read().split("\n")
+        return sqli_payload_list[:-1]
 
-        with open(LOG_FILE_PATH, "a") as file:
+    @staticmethod
+    def __save_date_to_file(file_path: str) -> None:
+        with open(file_path, "a") as file:
             file.write(f"## Date: {datetime.now().strftime('%d-%m-%Y')} ~ Time: {datetime.now().strftime('%H:%M:%S')} ##\n")
             file.write("-"*50 + "\n")
 
-        # http://127.0.0.1:80/DVWA/login.php
-        login_page_url = input("Enter login page url (to bypass it): ")
-        user_token = helper_dvwa.DVWA.get_user_token(login_page_url)
+    @staticmethod
+    def __save_logs_to_file(file_path: str, result_tuple: tuple) -> None:
+        with open(file_path, "a") as file:
+            file.write(f"Scan Result: {result_tuple[0]}\nScan Description: {result_tuple[1]}\n")
+            file.write("_" * 50 + "\n")
+
+    def scan(self):
+        # TODO: might be removed
+        print(f"Scanning from function: '{SQLi.scan.__name__}'\nClass: {self.__class__.__name__}\nUrl:'{self.url}'\n")
+
+        sqli_payload_list = SQLi.__get_sqli_payload(PAYLOADS_FILE_PATH)
+        # print(f"sqli_payload_list: {sqli_payload_list}")  #TODO: remove
+        # print(f"len(sqli_payload_list): {len(sqli_payload_list)}")  #TODO: remove
+
+        # Save current date to log file
+        print("Saving current date to log file")  # TODO: might be removed
+        SQLi.__save_date_to_file(LOGS_FILE_PATH)
 
         # cookies_dict_test = helper_dvwa.DVWA.get_login_cookies(login_page_url)
         cookies_dict = {
-            "PHPSESSID": user_token,
             "security": "low"
-            # "security": "medium"
         }
+        # print(cookies_dict)
 
         with requests.Session() as sess:
             sess.cookies.update(cookies_dict)
 
-            # http://localhost/DVWA/vulnerabilities/sqli/
-            input_url_to_check = input("Please enter a website url you want to check for Error Based SQL Injection: ")
-            url_to_check_res = sess.get(input_url_to_check)
+            url_to_check_res = sess.get(self.url)
+            # print(f"url_to_check_res.text: {url_to_check_res.text}")  #TODO: remove
 
             forms = helper_generic_tags.GetGenericTags.get_tags(url_to_check_res.text, "form", {})
 
             for form in forms:
+                # print(f"form: {form}")  #TODO: remove
                 for payload in sqli_payload_list:
+                    # print("$"*60)
+                    # print(f"payload: {payload}")  #TODO: remove
 
                     # For GET request
                     if form["method"] == "GET":
-                        get_input_tags_as_dict = SQLi.__extract_input_values(form)
+                        input_tags_as_dict = helper_dvwa.DVWA.extract_input_values(form)  # func also print type(form)
+                        # print(f"input_tags_as_dict: {input_tags_as_dict}")  #TODO: remove
 
-                        for key, value in get_input_tags_as_dict.items():
+                        for key, value in input_tags_as_dict.items():
                             if value is None:
-                                get_input_tags_as_dict[key] = payload
+                                input_tags_as_dict[key] = payload
+                        # print(f"input_tags_as_dict: {input_tags_as_dict}")  #TODO: remove
 
-                        response = sess.get(input_url_to_check, params=get_input_tags_as_dict)
-
-                    # region POST for medium level
-                    # # For POST request
-                    # elif form["method"] == "POST":
-                    #     print("POST METHOD")
-                    #     get_input_tags_as_dict = SQLi.__extract_input_values(form)
-                    #     print(f"3 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
-                    #
-                    #     for key, value in get_input_tags_as_dict.items():
-                    #         if value is None:
-                    #             get_input_tags_as_dict[key] = payload
-                    #     print(f"4 - {get_input_tags_as_dict}")  # TODO: DEBUG remove
-                    #
-                    #     response = sess.post(input_url_to_check, params=get_input_tags_as_dict)
-                    #     print(f"5 - {response.text}")  # TODO: DEBUG remove
-                    # endregion
+                        response = sess.get(self.url, params=input_tags_as_dict)
+                        # print(f"response.text: {response.text}")  #TODO: remove
 
                     result_bool, result_description = SQLi.__check_sqli_success(response, payload)
+                    # print(f"result_bool, result_description: {result_bool, result_description}")  #TODO: remove
+                    res_tup = result_bool, result_description
 
-                    # Writing the results into a log file
-                    with open(LOG_FILE_PATH, "a") as file:
-                        file.write(f"Scan Result: {result_bool}\nScan Description: {result_description}\n")
-                        file.write("_"*50 + "\n")
+                    # Save the logs into file
+                    SQLi.__save_logs_to_file(LOGS_FILE_PATH, res_tup)
 
+        print(f"Saved scan logs into {LOGS_FILE_PATH}")
+        print(f"End of '{SQLi.scan.__name__}' function...")  # TODO: might be removed
 
-if __name__ == '__main__':
-    SQLi.main()
+# if __name__ == '__main__':
+#     SQLi.main()
